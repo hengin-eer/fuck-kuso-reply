@@ -60,7 +60,10 @@ export async function POST(req: Request) {
     const json = JSON.parse(text);
     console.log("Parsed JSON:", json);
 
-    return NextResponse.json(json);
+    // Handle case where Gemini returns an array instead of an object
+    const responseData = Array.isArray(json) ? json[0] : json;
+
+    return NextResponse.json(responseData);
   } catch (error: any) {
     console.error("Gemini API Error:", error);
 
