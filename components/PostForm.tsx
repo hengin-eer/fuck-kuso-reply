@@ -9,6 +9,7 @@ export default function PostForm({ onSubmit, isLoading }: { onSubmit: (text: str
     e.preventDefault();
     if (!text.trim() || isLoading) return;
     onSubmit(text);
+    setText("");
   };
 
   return (
