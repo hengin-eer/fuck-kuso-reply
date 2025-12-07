@@ -131,3 +131,16 @@ APIリクエスト数を節約するため、1回の生成ですべての状態�
 *   **「許さない」モード:** 謝罪後さらに「追撃」ボタンでアカウント削除まで追い込む。
 *   **シェア機能:** 「○○さんの投稿が3件のクソリプを撃退し、示談金90万円を獲得しました」画像を生成。
   * canvas要素で作成し、OGPに設定。
+
+## 8. 残タスク (TODO)
+
+### Refactoring & Type Safety
+- [ ] **Define Schema for API Response:** `app/api/generate-replies/route.ts` のレスポンスにて`import { SchemaType } from "@google/generative-ai";`を利用して、APIレスポンスのスキーマを厳密に定義する。
+- [ ] **API Error Handling:** `app/api/generate-replies/route.ts` の `catch` ブロックにおける `error` 変数の型定義を行い、`any` を排除する。
+- [ ] **Custom Hooks:** `app/page.tsx` のデータ取得・状態管理ロジックをカスタムフック（例: `useReplies`）に切り出し、コンポーネントの見通しを良くする。
+
+### UI/UX Improvements
+- [ ] **クソリプ収集中のローディング表示改善：** そのまま「クソリプ収集中」と表示するのではなく、実際のSNSのようにローディングアニメーションなしで自然にリプが追加されるように見せる。
+- [ ] **HackerLogs Layout:** `components/HackerLogs.tsx` のレイアウトを修正し、ログが要素からはみ出たり隠れたりしないようにする（`height: auto` や `min-height` の調整）。
+- [ ] **Staggered Display:** クソリプ受信時、一括で表示するのではなく、1件ずつ時間差（例: 1秒間隔）で表示させる演出を追加する。
+- [ ] **Global Overlay (Optional):** 開示演出をリプライ要素内だけでなく、画面全体を覆う演出に強化することを検討する。
